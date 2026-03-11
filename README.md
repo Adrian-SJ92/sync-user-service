@@ -84,6 +84,23 @@ npm run start
 - `build`: compila TypeScript en `dist/`
 - `start`: arranca la version compilada
 
+## Arquitectura
+
+El proyecto sigue una estructura simple de microservicio separando responsabilidades:
+
+```text
+src
+├── controllers   # manejo de requests/responses
+├── services      # lógica de negocio
+├── routes        # definición de endpoints
+├── schemas       # validación de payloads (Zod)
+├── middlewares   # middleware (correlation id, etc.)
+├── db            # conexión e inicialización de PostgreSQL
+├── types         # extensiones de tipos de Express
+├── app.ts        # configuración de Express
+└── server.ts     # arranque del servidor
+```
+
 ## Docker
 
 Para levantar base de datos y API desde un repositorio recien clonado:
