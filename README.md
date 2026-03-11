@@ -78,27 +78,43 @@ Respuesta esperada:
 npm run dev
 npm run build
 npm run start
+npm test
 ```
 
 - `dev`: ejecuta la API en modo watch
 - `build`: compila TypeScript en `dist/`
 - `start`: arranca la version compilada
+- `test`: compila el proyecto y ejecuta los tests basicos
+
+## Tests
+
+El proyecto incluye tests basicos para:
+
+- `GET /health` cuando la base de datos esta disponible
+- `GET /health` cuando la base de datos no esta disponible
+- `POST /sync/user` con payload invalido
+
+Ejecucion:
+
+```powershell
+npm test
+```
 
 ## Arquitectura
 
-El proyecto sigue una estructura simple de microservicio separando responsabilidades:
+El proyecto sigue una estructura simple separando responsabilidades:
 
 ```text
 src
-├── controllers   # manejo de requests/responses
-├── services      # lógica de negocio
-├── routes        # definición de endpoints
-├── schemas       # validación de payloads (Zod)
-├── middlewares   # middleware (correlation id, etc.)
-├── db            # conexión e inicialización de PostgreSQL
-├── types         # extensiones de tipos de Express
-├── app.ts        # configuración de Express
-└── server.ts     # arranque del servidor
+|-- controllers   # manejo de requests/responses
+|-- services      # logica de negocio
+|-- routes        # definicion de endpoints
+|-- schemas       # validacion de payloads (Zod)
+|-- middlewares   # middleware (correlation id, etc.)
+|-- db            # conexion e inicializacion de PostgreSQL
+|-- types         # extensiones de tipos de Express
+|-- app.ts        # configuracion de Express
+`-- server.ts     # arranque del servidor
 ```
 
 ## Docker
